@@ -1,0 +1,108 @@
+# Sample Bash History – WSL Development Environment
+# This file is used for demos and testing when no real ~/.bash_history exists.
+
+cd ~/projects/my-app
+ls -la
+git status
+git pull origin main
+npm install
+npm run dev
+npm run build
+npm test
+
+# Docker operations
+docker ps
+docker-compose up -d
+docker-compose down
+docker logs -f my_app_container
+docker exec -it my_app_container bash
+
+# Port / networking
+ss -tlnp
+netstat -tulnp | grep 3000
+lsof -i :3000
+kill -9 $(lsof -t -i:3000)
+curl http://localhost:3000/health
+
+# Python virtualenv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip freeze > requirements.txt
+python app.py
+uvicorn main:app --reload --port 8000
+
+# Git workflow
+git add .
+git commit -m "feat: add new feature"
+git push origin feature/my-branch
+git checkout -b feature/new-feature
+git merge main
+git log --oneline -10
+
+# System updates
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y build-essential curl wget git
+
+# Environment variables
+export DATABASE_URL=postgresql://user:password@localhost:5432/mydb
+export REDIS_URL=redis://localhost:6379
+export NODE_ENV=development
+printenv | grep -E "NODE|DATABASE|REDIS"
+
+# WSL-specific
+explorer.exe .
+code .
+wsl --list --verbose
+wsl --shutdown
+
+# Nginx
+sudo nginx -t
+sudo systemctl reload nginx
+sudo systemctl status nginx
+cat /etc/nginx/nginx.conf
+sudo nano /etc/nginx/sites-available/myapp.conf
+
+# Database
+psql -U postgres -d mydb
+pg_dump mydb > backup.sql
+redis-cli ping
+redis-cli FLUSHALL
+
+# File operations
+find . -name "*.log" -mtime +7 -delete
+grep -r "TODO" ./src --include="*.js"
+tail -f logs/app.log
+tar -czf backup.tar.gz ./data
+
+# SSH / remote
+ssh user@192.168.1.10
+scp -r ./dist user@server:/var/www/html
+ssh-keygen -t ed25519 -C "dev@example.com"
+
+# Node.js / npm
+node --version
+npm --version
+npx create-react-app my-new-app
+yarn install
+yarn build
+pnpm install
+
+# Makefile targets
+make install
+make build
+make test
+make clean
+make deploy
+
+# tmux
+tmux new -s dev
+tmux attach -t dev
+tmux list-sessions
+
+# Miscellaneous
+htop
+free -h
+df -h
+uname -r
+cat /proc/version

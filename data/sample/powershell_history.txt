@@ -1,0 +1,70 @@
+# Sample PowerShell History – Windows side of WSL development
+# Represents typical Windows developer workflow
+
+Get-Process | Where-Object {$_.ProcessName -eq "node"}
+Stop-Process -Name "node" -Force
+netstat -ano | findstr :3000
+taskkill /PID 12345 /F
+
+# WSL management
+wsl --list --verbose
+wsl --shutdown
+wsl --set-default Ubuntu-22.04
+wsl -d Ubuntu-22.04
+
+# Docker Desktop
+docker ps
+docker-compose up -d
+docker system prune -f
+
+# Git
+git status
+git pull
+git push origin main
+git log --oneline -10
+
+# File operations
+Get-ChildItem -Recurse -Filter "*.log"
+Remove-Item -Path ".\logs\*" -Recurse -Force
+Copy-Item ".\config\prod.env" ".\.env"
+
+# Package management
+winget install Microsoft.VisualStudioCode
+winget install Git.Git
+winget install Docker.DockerDesktop
+choco install nodejs-lts
+
+# Environment variables
+$env:NODE_ENV = "development"
+$env:DATABASE_URL = "postgresql://user:pass@localhost:5432/mydb"
+[System.Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";C:\tools", "User")
+
+# VS Code
+code .
+code --install-extension ms-vscode-remote.remote-wsl
+
+# IIS / Web
+iisreset
+Get-WebSite
+Start-WebSite "Default Web Site"
+
+# PowerShell remoting
+Enter-PSSession -ComputerName server01
+Invoke-Command -ComputerName server01 -ScriptBlock { Get-Service }
+
+# Certificates
+Get-ChildItem -Path Cert:\LocalMachine\My
+New-SelfSignedCertificate -DnsName "localhost"
+
+# Network
+Test-NetConnection -ComputerName google.com -Port 80
+Resolve-DnsName google.com
+Get-NetIPAddress | Where-Object {$_.AddressFamily -eq "IPv4"}
+
+# Execution policy
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+Get-ExecutionPolicy -List
+
+# PowerShell profile
+notepad $PROFILE
+. $PROFILE

@@ -1,0 +1,29 @@
+2024-03-01 08:00:01 INFO  [uvicorn] Started server process [1234]
+2024-03-01 08:00:01 INFO  [uvicorn] Waiting for application startup.
+2024-03-01 08:00:02 INFO  [app] Database connected: postgresql://myuser@localhost/mydb
+2024-03-01 08:00:02 INFO  [app] Redis connected: redis://localhost:6379
+2024-03-01 08:00:02 INFO  [uvicorn] Application startup complete.
+2024-03-01 08:01:15 INFO  [app] GET /health 200 3ms
+2024-03-01 08:02:33 INFO  [app] POST /api/auth/login 200 45ms
+2024-03-01 08:03:12 WARNING [app] Rate limit approaching for IP 192.168.1.5 (85/100 req/min)
+2024-03-01 08:05:00 INFO  [app] GET /api/users 200 12ms
+2024-03-01 08:10:44 ERROR [app] Database query timeout after 30s: SELECT * FROM large_table
+2024-03-01 08:10:44 ERROR [app] ConnectionError: psycopg2.OperationalError: could not connect to server
+2024-03-01 08:10:45 INFO  [app] Retrying database connection (attempt 1/3) …
+2024-03-01 08:10:46 INFO  [app] Database reconnected successfully.
+2024-03-01 08:15:22 WARNING [app] Port 3000 already in use – frontend devserver may not start
+2024-03-01 08:15:22 INFO  [app] To free port 3000: kill -9 $(lsof -t -i:3000)
+2024-03-01 08:20:11 INFO  [app] Running database migration: 0023_add_user_preferences.py
+2024-03-01 08:20:12 INFO  [app] Migration complete. 3 tables altered.
+2024-03-01 08:25:00 INFO  [nginx] Access log: GET /api/products 200 8ms
+2024-03-01 08:30:45 ERROR [app] Unhandled exception in /api/orders/checkout
+2024-03-01 08:30:45 ERROR [app] ValueError: Invalid payment method: crypto_unsupported
+2024-03-01 08:30:45 ERROR [app] Traceback (most recent call last):
+2024-03-01 08:30:45 ERROR [app]   File "/app/routers/orders.py", line 112, in checkout
+2024-03-01 08:30:45 ERROR [app]     payment = process_payment(method=payload.payment_method)
+2024-03-01 08:35:00 INFO  [app] Scheduled job: cache_warmup started
+2024-03-01 08:35:03 INFO  [app] Scheduled job: cache_warmup completed (142 keys cached)
+2024-03-01 09:00:00 INFO  [app] Health check: all systems nominal
+2024-03-01 09:15:22 WARNING [app] Memory usage at 78% – consider restarting if it reaches 90%
+2024-03-01 09:45:01 INFO  [app] npm install completed: 423 packages installed
+2024-03-01 09:45:04 INFO  [app] npm run build: webpack compiled successfully in 8432ms
